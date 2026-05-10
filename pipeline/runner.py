@@ -17,7 +17,9 @@ from config.runtime.runtime_config import build_runtime_config
 from config.runtime import runtime_state
 from pipeline.helpers import save_results
 
-def run_pipeline(video_file, all_frames_data_file):
+def run_pipeline(video_file,
+                 all_frames_data_file,
+                 logger=None):
 
     # ========================================================
     # LOAD DATA
@@ -34,6 +36,8 @@ def run_pipeline(video_file, all_frames_data_file):
     fps = get_fps(video_file)
 
     print("\nFPS:", fps)
+    if logger:
+        logger(f"\nFPS: {fps}")
 
     # ========================================================
     # INIT DYNAMIC RUNTIME
@@ -63,6 +67,9 @@ def run_pipeline(video_file, all_frames_data_file):
 
     print("\nTracks:")
     print(list(track_features.keys()))
+    if logger:
+        logger("Tracks:")
+        logger(list(track_features.keys()))
 
 
     final_results = {}
@@ -78,6 +85,10 @@ def run_pipeline(video_file, all_frames_data_file):
         print("\n===================================")
         print("TRACK:", track_id)
         print("===================================")
+        if logger:
+            logger("===================================")
+            logger(f"TRACK: {track_id}")
+            logger("===================================")
 
         # ========================================================
         # SEMANTIC PEAKS
@@ -128,6 +139,14 @@ def run_pipeline(video_file, all_frames_data_file):
                 indent=2
             )
         )
+        if logger:
+            logger("GPT Coarse Segments:")
+            logger(
+                json.dumps(
+                coarse,
+                indent=2
+                )
+            )
 
         # ========================================================
         # REFINE BOUNDARIES
@@ -154,6 +173,9 @@ def run_pipeline(video_file, all_frames_data_file):
 
         print("\nFinal Segments:")
         print(final_segments)
+        if logger:
+            logger("Final Segments:")
+            logger(final_segments)
 
         # ========================================================
         # PREP SEGMENT INPUTS
@@ -199,6 +221,18 @@ def run_pipeline(video_file, all_frames_data_file):
                 indent=2
             )
         )
+
+        if logger:
+            logger("===================================")
+            logger("FINAL STORY")
+            logger("===================================")
+
+            logger(
+                json.dumps(
+                    story,
+                    indent=2
+                )
+            )
 
         # ========================================================
         # SAVE RESULTS

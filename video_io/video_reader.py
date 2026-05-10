@@ -45,4 +45,4 @@ def get_fps(video_file):
     if fps is None or fps == 0:
         fps = 30
 
-    return fps
+    return int(fps)
