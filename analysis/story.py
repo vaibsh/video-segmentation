@@ -53,7 +53,8 @@ Return STRICT JSON ONLY:
   "overall_video": "One-sentence summary of the entire video",
   "segments": [
     {
-      "segment_id": 0,
+      "start_frame": 0,
+      "end_frame": 120,
       "activity": "short descriptive label of activity",
       "about": "clear explanation grounded in visual evidence"
     }

@@ -140,7 +140,7 @@ def run_pipeline(video_file,
             )
         )
         if logger:
-            logger("GPT Coarse Segments:")
+            logger("GPT COARSE SEGMENTS:")
             logger(
                 json.dumps(
                 coarse,
@@ -173,9 +173,6 @@ def run_pipeline(video_file,
 
         print("\nFinal Segments:")
         print(final_segments)
-        if logger:
-            logger("Final Segments:")
-            logger(final_segments)
 
         # ========================================================
         # PREP SEGMENT INPUTS
@@ -223,10 +220,7 @@ def run_pipeline(video_file,
         )
 
         if logger:
-            logger("===================================")
-            logger("FINAL STORY")
-            logger("===================================")
-
+            logger("FINAL STORY:")
             logger(
                 json.dumps(
                     story,
