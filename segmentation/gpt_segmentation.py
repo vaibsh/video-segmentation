@@ -1,6 +1,6 @@
 from preprocessing.image_utils import pil_to_data_url
 from utils.json_utils import safe_json
-from config.config import client
+from config.config import get_openai_client
 
 # ============================================================
 # GPT SEGMENTATION
@@ -9,7 +9,8 @@ from config.config import client
 def gpt_coarse_segmentation(
     images,
     frame_ids,
-    total_frames
+    total_frames,
+    api_key=None
 ):
 
     content = []
@@ -85,6 +86,8 @@ RULES:
             "image_url":
                 pil_to_data_url(img)
         })
+
+    client = get_openai_client(api_key)
 
     response = client.responses.create(
         model="gpt-4o",

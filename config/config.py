@@ -13,19 +13,23 @@ load_dotenv()
 # OPENAI CLIENT
 # ============================================================
 
-OPENAI_API_KEY = os.getenv(
-    "OPENAI_API_KEY"
-)
+def get_openai_client(api_key=None):
 
-if OPENAI_API_KEY is None:
-    raise ValueError(
-        "OPENAI_API_KEY missing in .env"
+    if api_key is None:
+
+        api_key = os.getenv(
+            "OPENAI_API_KEY"
+        )
+
+    if not api_key:
+
+        raise ValueError(
+            "No OpenAI API key provided."
+        )
+
+    return OpenAI(
+        api_key=api_key
     )
-
-client = OpenAI(
-    api_key=OPENAI_API_KEY
-)
-
 # ============================================================
 # STATIC HYPER-PARAMETERS
 # ============================================================

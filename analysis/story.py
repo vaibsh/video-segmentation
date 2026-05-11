@@ -1,13 +1,14 @@
 from preprocessing.image_utils import pil_to_data_url
 from utils.json_utils import safe_json
-from config.config import client
+from config.config import get_openai_client
 
 # ============================================================
 # STORY UNDERSTANDING
 # ============================================================
 
 def analyze_video_story(
-    segments
+    segments,
+    api_key=None
 ):
 
     content = []
@@ -85,6 +86,8 @@ Frames: {seg['frames']}
                 "image_url":
                     pil_to_data_url(img)
             })
+
+    client = get_openai_client(api_key)
 
     response = client.responses.create(
         model="gpt-4o",

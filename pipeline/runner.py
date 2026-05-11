@@ -19,7 +19,8 @@ from pipeline.helpers import save_results
 
 def run_pipeline(video_file,
                  all_frames_data_file,
-                 logger=None):
+                 logger=None,
+                 api_key=None):
 
     # ========================================================
     # LOAD DATA
@@ -129,7 +130,8 @@ def run_pipeline(video_file,
         coarse = gpt_coarse_segmentation(
             images,
             frame_ids,
-            len(embs)
+            len(embs),
+            api_key=api_key
         )
 
         print("\nGPT Coarse Segments:")
@@ -205,7 +207,8 @@ def run_pipeline(video_file,
         # ========================================================
 
         story = analyze_video_story(
-            segment_inputs
+            segment_inputs,
+            api_key=api_key
         )
 
         print("\n===================================")

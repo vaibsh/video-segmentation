@@ -31,6 +31,11 @@ pkl_file = st.file_uploader(
     type=["gz"]
 )
 
+api_key = st.text_input(
+    "OpenAI API Key",
+    type="password"
+)
+
 run_button = st.button(
     "Run Segmentation"
 )
@@ -41,10 +46,13 @@ run_button = st.button(
 
 if run_button:
 
-    if video_file is None or pkl_file is None:
-
+    if (
+        video_file is None
+        or pkl_file is None
+        or not api_key
+    ):
         st.error(
-            "Please upload both files."
+            "Please upload both files and specify OPENAI_API_KEY."
         )
 
     else:
@@ -109,7 +117,8 @@ if run_button:
             results = run_pipeline(
                 video_file=video_path,
                 all_frames_data_file=pkl_path,
-                logger=streamlit_logger
+                logger=streamlit_logger,
+                api_key=api_key
             )
 
         st.success(
