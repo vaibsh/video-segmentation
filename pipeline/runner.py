@@ -5,10 +5,10 @@ import json
 from video_io.loader import load_all_frames_data
 from video_io.video_reader import get_fps
 from config.config import TIME_WINDOW
-from preprocessing.track_builder import build_track_features
+from feature_processing.track_builder import build_track_features
 from segmentation.keyframes import semantic_keyframe_sampling
 from segmentation.expansion import expand_keyframes
-from preprocessing.frame_loader import load_selected_frames
+from feature_processing.frame_loader import load_selected_frames
 from segmentation.gpt_segmentation import gpt_coarse_segmentation
 from segmentation.refinement import refine_boundaries
 from segmentation.final_segments import build_final_segments, sample_segment_frames

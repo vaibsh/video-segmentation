@@ -1,4 +1,4 @@
-from preprocessing.image_utils import pil_to_data_url
+from feature_processing.image_utils import pil_to_data_url
 from utils.json_utils import safe_json
 from config.config import get_openai_client
 

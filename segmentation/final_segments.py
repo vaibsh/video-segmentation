@@ -1,6 +1,6 @@
 import numpy as np
 from video_io.video_reader import read_frame
-from preprocessing.image_utils import resize_for_gpt
+from feature_processing.image_utils import resize_for_gpt
 from config.config import MAX_IMAGE_SIZE
 
 # ============================================================
