@@ -2,65 +2,46 @@ import os
 import streamlit as st
 
 from pipeline.runner import run_pipeline
+from frontend.player import render_segmented_video
 
 # ============================================================
 # PAGE CONFIG
 # ============================================================
 
 st.set_page_config(
-    page_title="Video Semantic Segmentation",
+    page_title="Semantic Video Segmentation",
     layout="wide"
 )
 
-st.title("Semantic Video Segmentation")
+st.title(
+    "Semantic Video Segmentation"
+)
 
 # ============================================================
-# UI CONTAINER
+# FILE UPLOADS
 # ============================================================
 
-ui_container = st.container()
+video_file = st.file_uploader(
+    "Upload Video",
+    type=["mp4", "mov", "avi"]
+)
 
-with ui_container:
+pkl_file = st.file_uploader(
+    "Upload all_frames_data.pkl.gz",
+    type=["gz"]
+)
 
-    # ========================================================
-    # FILE UPLOADS
-    # ========================================================
-
-    video_file = st.file_uploader(
-        "Upload Video",
-        type=["mp4", "mov", "avi"]
-    )
-
-    pkl_file = st.file_uploader(
-        "Upload all_frames_data.pkl.gz",
-        type=["gz"]
-    )
-
-    run_button = st.button(
-        "Run Segmentation"
-    )
+run_button = st.button(
+    "Run Segmentation"
+)
 
 # ============================================================
-# STATUS CONTAINER
+# LOGGER
 # ============================================================
 
-status_container = st.container()
-
-# ============================================================
-# LOG CONTAINER
-# ============================================================
-
-log_container = st.container()
-
-with log_container:
-
-    log_placeholder = st.empty()
+log_placeholder = st.empty()
 
 logs = []
-
-# ============================================================
-# STREAMLIT LOGGER
-# ============================================================
 
 def streamlit_logger(msg):
 
@@ -72,18 +53,16 @@ def streamlit_logger(msg):
     )
 
 # ============================================================
-# RUN PIPELINE
+# RUN
 # ============================================================
 
 if run_button:
 
     if video_file is None or pkl_file is None:
 
-        with status_container:
-
-            st.error(
-                "Please upload both files."
-            )
+        st.error(
+            "Please upload both files."
+        )
 
     else:
 
@@ -123,25 +102,28 @@ if run_button:
             )
 
         # ====================================================
-        # STATUS AREA
+        # RUN PIPELINE
         # ====================================================
 
-        with status_container:
+        with st.spinner(
+            "Running segmentation..."
+        ):
 
-            st.success(
-                "Files uploaded."
+            results = run_pipeline(
+                video_file=video_path,
+                all_frames_data_file=pkl_path,
+                logger=streamlit_logger
             )
 
-            with st.spinner(
-                "Running segmentation..."
-            ):
+        st.success(
+            "Segmentation Complete"
+        )
 
-                results = run_pipeline(
-                    video_file=video_path,
-                    all_frames_data_file=pkl_path,
-                    logger=streamlit_logger
-                )
+        # ====================================================
+        # RENDER PLAYER
+        # ====================================================
 
-            st.success(
-                "Segmentation Complete"
-            )
+        render_segmented_video(
+            video_path,
+            results
+        )

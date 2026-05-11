@@ -6,3 +6,5 @@ scipy
 pillow
 streamlit
 python-dotenv
+streamlit-player
+streamlit-autorefresh
