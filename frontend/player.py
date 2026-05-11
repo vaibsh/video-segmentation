@@ -8,7 +8,7 @@ from frontend.timeline import build_segments
 def render_segmented_video(video_path, results):
 
     # ========================================================
-    # VIDEO
+    # VIDEO BASE64
     # ========================================================
 
     with open(video_path, "rb") as f:
@@ -17,48 +17,80 @@ def render_segmented_video(video_path, results):
     segments = build_segments(results)
 
     segments_json = json.dumps(segments)
-
-    # IMPORTANT: escape injection issues
     segments_json = segments_json.replace("</", "<\\/")
 
     html_code = f"""
     <style>
 
     .container {{
-        width: 650px;
+        width: 720px;
         margin: auto;
         font-family: Arial;
     }}
 
     video {{
         width: 100%;
-        max-height: 360px;
-        border-radius: 10px;
+        max-height: 380px;
+        border-radius: 12px;
+        background: black;
     }}
+
+    /* =========================
+       TIMELINE BASE
+    ========================== */
 
     .timeline {{
         display: flex;
-        height: 14px;
-        margin-top: 10px;
-        border-radius: 8px;
+        height: 18px;
+        margin-top: 12px;
+        border-radius: 10px;
         overflow: hidden;
-        background: #ddd;
+        background: #222;
+        box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
     }}
 
-    .segment {{
+
+   .segment {{
         height: 100%;
-        opacity: 0.5;
+        transition: all 0.25s ease;
+
+        /* slightly more dimmed */
+        opacity: 0.42;
+
+        /* mild desaturation only */
+        filter: saturate(0.7);
+
+        transform: scaleY(1);
     }}
+
+    /* =========================
+       ACTIVE SEGMENT (🔥 MAIN CHANGE)
+    ========================== */
 
     .segment.active {{
-        opacity: 1;
-        outline: 2px solid black;
+        opacity: 1 !important;
+
+        /* stronger presence */
+        filter: saturate(1.3) brightness(1.1) !important;
+
+        transform: scaleY(1.6);
+
+        /* richer glow (layered feel) */
+        box-shadow:
+            0 0 8px rgba(0, 255, 140, 0.8),
+            0 0 16px rgba(0, 255, 140, 0.4);
+
+        z-index: 10;
     }}
+
+    /* =========================
+       META PANEL
+    ========================== */
 
     .meta {{
         margin-top: 16px;
         padding: 14px;
-        border-radius: 10px;
+        border-radius: 12px;
         background: #111;
         color: white;
     }}
@@ -66,6 +98,7 @@ def render_segmented_video(video_path, results):
     .title {{
         font-size: 20px;
         font-weight: bold;
+        color: #00ff99;
     }}
 
     .frames {{
@@ -77,7 +110,8 @@ def render_segmented_video(video_path, results):
     .about {{
         margin-top: 10px;
         font-size: 14px;
-        line-height: 1.4;
+        line-height: 1.5;
+        color: #ddd;
     }}
 
     </style>
@@ -109,7 +143,13 @@ def render_segmented_video(video_path, results):
     const framesEl = document.getElementById("frames");
     const aboutEl = document.getElementById("about");
 
-    const colors = ["#FF6B6B", "#4ECDC4", "#FFD93D", "#6C5CE7"];
+    const colors = [
+        "#00ff88",
+        "#00c2ff",
+        "#ffcc00",
+        "#ff4d6d",
+        "#a855f7"
+    ];
 
     const totalDuration = segments[segments.length - 1].end_sec;
 
@@ -118,6 +158,7 @@ def render_segmented_video(video_path, results):
     // ========================================================
 
     segments.forEach((seg, i) => {{
+
         const d = document.createElement("div");
         d.className = "segment";
 
@@ -146,21 +187,32 @@ def render_segmented_video(video_path, results):
 
         const s = segments[idx];
 
+        // =========================
+        // TEXT UPDATE
+        // =========================
+
         activityEl.innerText = s.activity;
         framesEl.innerText = `Frames: ${{s.start_frame}} → ${{s.end_frame}}`;
         aboutEl.innerText = s.about;
+
+        // =========================
+        // RESET ALL
+        // =========================
 
         for (let i = 0; i < segments.length; i++) {{
             const el = document.getElementById("seg-" + i);
             if (el) el.classList.remove("active");
         }}
 
+        // =========================
+        // HIGHLIGHT ACTIVE
+        // =========================
+
         const active = document.getElementById("seg-" + idx);
         if (active) active.classList.add("active");
     }}
 
     video.addEventListener("timeupdate", update);
-
     video.addEventListener("loadeddata", update);
 
     video.addEventListener("ended", () => {{
@@ -173,6 +225,6 @@ def render_segmented_video(video_path, results):
 
     components.html(
         html_code,
-        height=600,
-        scrolling=True
+        height=720,
+        scrolling=False
     )

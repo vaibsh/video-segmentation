@@ -9,12 +9,12 @@ from frontend.player import render_segmented_video
 # ============================================================
 
 st.set_page_config(
-    page_title="Semantic Video Segmentation",
+    page_title="Video Segmentation",
     layout="wide"
 )
 
 st.title(
-    "Semantic Video Segmentation"
+    "Video Segmentation"
 )
 
 # ============================================================
@@ -34,23 +34,6 @@ pkl_file = st.file_uploader(
 run_button = st.button(
     "Run Segmentation"
 )
-
-# ============================================================
-# LOGGER
-# ============================================================
-
-log_placeholder = st.empty()
-
-logs = []
-
-def streamlit_logger(msg):
-
-    logs.append(str(msg))
-
-    log_placeholder.code(
-        "\n\n".join(logs),
-        language="text"
-    )
 
 # ============================================================
 # RUN
@@ -102,6 +85,20 @@ if run_button:
             )
 
         # ====================================================
+        # LOG STORAGE
+        # ====================================================
+
+        logs = []
+
+        # ====================================================
+        # LOGGER FUNCTION
+        # ====================================================
+
+        def streamlit_logger(msg):
+
+            logs.append(str(msg))
+
+        # ====================================================
         # RUN PIPELINE
         # ====================================================
 
@@ -120,10 +117,25 @@ if run_button:
         )
 
         # ====================================================
-        # RENDER PLAYER
+        # VIDEO + TIMELINE + DESCRIPTION
         # ====================================================
 
         render_segmented_video(
             video_path,
             results
+        )
+
+        # ====================================================
+        # LOGS SECTION (BELOW VIDEO)
+        # ====================================================
+
+        st.markdown("---")
+
+        st.subheader(
+            "Pipeline Logs"
+        )
+
+        st.code(
+            "\n\n".join(logs),
+            language="text"
         )
