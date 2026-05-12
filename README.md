@@ -76,7 +76,8 @@ segmented playback
   ```bash
     python3 run_local.py \
     --video_file inputs/<your-video>.mp4 \
-    --pkl_gz_file inputs/all_frames_data.pkl.gz```   
+    --pkl_gz_file inputs/all_frames_data.pkl.gz
+  ```   
 
 
 ### Video Requirements
