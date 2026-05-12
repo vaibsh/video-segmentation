@@ -3,7 +3,7 @@
 
 ## About
 
-This tool partitions video into coherent activity segments and describes what activity happens in each segment and the overall video. 
+This tool partitions a video into coherent activity segments and describes what activity happens in each segment and the overall video. 
 
 ### What This Project Does
 
