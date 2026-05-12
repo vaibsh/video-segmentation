@@ -57,23 +57,23 @@ segmented playback
 
 ### Running Locally
 
-Clone Repository  
-`git clone https://github.com/vaibsh/video-segmentation.git`  
-`cd video-segmentation`  
+1. Clone Repository  
+  `git clone https://github.com/vaibsh/video-segmentation.git`  
+  `cd video-segmentation`  
 
-Create Virtual Environment  
-`python3 -m venv venv`  
-`source venv/bin/activate`  
+2. Create Virtual Environment  
+  `python3 -m venv venv`  
+  `source venv/bin/activate`  
 
-Install Requirements  
-`pip install -r requirements.txt`  
+3. Install Requirements  
+  `pip install -r requirements.txt`  
 
-Add OpenAI API Key  
-Create a .env file:  
-OPENAI_API_KEY=your_api_key_here  
+4. Add OpenAI API Key  
+  Create a .env file:  
+  OPENAI_API_KEY=your_api_key_here  
 
-Run Pipeline  
-`python3 run_local.py \
+5. Run Pipeline  
+  `python3 run_local.py \
    --video_file inputs/<your-video>.mp4 \
    --pkl_gz_file inputs/all_frames_data.pkl.gz`   
 
