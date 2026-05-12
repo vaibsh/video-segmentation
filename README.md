@@ -41,8 +41,8 @@ Please use the jupyter notebook - notebooks/preprocessing.ipynb to generate this
 
 ### Running on Streamlit
 
-Live App:
-[video-segmentation.streamlit.app]
+Live App:  
+[video-segmentation.streamlit.app](video-segmentation.streamlit.app)
 
 Steps
 Upload a video
