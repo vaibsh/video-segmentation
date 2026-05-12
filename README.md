@@ -1,7 +1,7 @@
-# VIDEO SEGMENTATION
+# Video Segmentation
 
 
-## ABOUT
+## About
 
 This tool partitions video into coherent activity segments and describes what activity happens in each segment and the overall video. 
 
@@ -32,7 +32,7 @@ Example:
 ```
 
 
-## INSTALLATION
+## Installation
 
 ### Preprocessing
 Use this step to generate all_frames_data.pkl.gz file which is essentially capturing the features in the video using
@@ -97,7 +97,7 @@ human activities
 instructional videos
 
 
-## ARCHITECTURE & ALGORITHMS
+## Architecture & Algorithms
 
  Following is a brief overview architecture / algorithms:  
  
@@ -132,5 +132,5 @@ instructional videos
  7. Finally, the whole video is streamed highlighting which segment is being played alongwith frame boundaries and description
     of activity in each segment.
 
-## AUTHOR
+## Author
 Built by Vaibhav Shinde
