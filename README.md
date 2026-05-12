@@ -73,9 +73,10 @@ segmented playback
   OPENAI_API_KEY=your_api_key_here  
 
 5. Run Pipeline  
-  `python3 run_local.py \
+  ```bash
+    python3 run_local.py \
     --video_file inputs/<your-video>.mp4 \
-    --pkl_gz_file inputs/all_frames_data.pkl.gz`   
+    --pkl_gz_file inputs/all_frames_data.pkl.gz```   
 
 
 ### Video Requirements
