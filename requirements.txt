@@ -8,3 +8,11 @@ streamlit
 python-dotenv
 streamlit-player
 streamlit-autorefresh
+matplotlib
+scikit-learn
+torch
+torchvision
+ultralytics
+lap>=0.5.12
+transformers
+git+https://github.com/facebookresearch/sam2.git
