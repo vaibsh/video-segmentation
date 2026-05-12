@@ -18,20 +18,79 @@ Example:
 
 ```json
 {
+  "overall_video": "...",
   "segments": [
-  {
+    {
       "start_frame": 0,
       "end_frame": 130,
-      "activity": "Seated shoulder exercise"
-    },
-    {
-      "start_frame": 131,
-      "end_frame": 277,
-      "activity": "Lateral shoulder raises"
+      "activity": "...",
+      "about": "..."
     }
   ]
 }
 ```
+
+## Installation
+
+### Preprocessing
+Use this step to generate all_frames_data.pkl.gz file which is essentially capturing the features in the video using
+YOLO, BoTSORT, SAM2, DINO v2 etc. This is an intermediate file to generate the segments. 
+#### Important: A GPU is required to generate this file from the input video 
+Please use the jupyter notebook - notebooks/preprocessing.ipynb to generate this file.
+(The code for this file is yet to be fully integrated in this git repo)
+
+### Running on Streamlit
+
+Live App:
+video-segmentation.streamlit.app
+
+Steps
+Upload a video
+Upload corresponding .pkl.gz preprocessing file
+Enter OpenAI API key
+Run segmentation
+
+The app produces:
+semantic segments
+activity descriptions
+segmented playback
+
+### Running Locally
+
+1. Clone Repository
+   git clone https://github.com/vaibsh/video-segmentation.git
+   cd video-segmentation
+
+2. Create Virtual Environment
+   python3 -m venv venv
+   source venv/bin/activate
+
+3. Install Requirements
+   pip install -r requirements.txt
+
+4. Add OpenAI API Key
+   Create a .env file:
+   OPENAI_API_KEY=your_api_key_here
+
+5. Run Pipeline
+   python3 run_local.py \
+  --video_file inputs/<your-video>.mp4 \
+  --pkl_gz_file inputs/all_frames_data.pkl.gz   
+
+### Video Requirements
+
+Recommended:
+  MP4 format
+  10–60 seconds
+  720p or lower
+  Single dominant object
+
+Works best for:
+workouts
+sports
+human activities
+instructional videos
+
 
 ## Architecture & Algorithms
 
@@ -68,6 +127,5 @@ Example:
  7. Finally, the whole video is streamed highlighting which segment is being played alongwith frame boundaries and description
     of activity in each segment.
 
-
-    
-    the entire video. GPT is instructed to find out coherent activities in each semg
+### Author
+Built by Vaibhav Shinde
