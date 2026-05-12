@@ -6,7 +6,7 @@ This tool partitions video into coherent activity segments and describes what ac
 
 ### What This Project Does
 
-Given a video, the pipeline:
+Given a video, the pipeline:  
 1. Tracks objects/persons across frames
 2. Extracts segmentation masks
 3. Computes semantic embeddings
@@ -44,15 +44,15 @@ Please use the jupyter notebook - notebooks/preprocessing.ipynb to generate this
 Live App:  
 https://video-segmentation.streamlit.app/
 
-Steps
-Upload a video
-Upload corresponding .pkl.gz preprocessing file
-Enter OpenAI API key
-Run segmentation
+Steps  
+1. Upload a video
+2. Upload corresponding .pkl.gz preprocessing file
+3. Enter OpenAI API key
+4. Run segmentation
 
-The app produces:
-semantic segments
-activity descriptions
+The app produces:  
+semantic segments  
+activity descriptions  
 segmented playback
 
 ### Running Locally
@@ -74,27 +74,27 @@ segmented playback
 
 5. Run Pipeline
    python3 run_local.py \
-  --video_file inputs/<your-video>.mp4 \
-  --pkl_gz_file inputs/all_frames_data.pkl.gz   
+   --video_file inputs/<your-video>.mp4 \
+   --pkl_gz_file inputs/all_frames_data.pkl.gz   
 
 ### Video Requirements
 
-Recommended:
-  MP4 format
-  10–60 seconds
-  720p or lower
-  Single dominant object
+Recommended:  
+MP4 format  
+10–60 seconds  
+720p or lower  
+Single dominant object  
 
-Works best for:
-workouts
-sports
-human activities
+Works best for:  
+workouts  
+sports  
+human activities  
 instructional videos
 
 
 ## Architecture & Algorithms
 
- Following is a brief overview architecture / algorithms:
+ Following is a brief overview architecture / algorithms:  
  
  1. Preprocessing - Features are extracted from video using
     YOLO & BoTSORT - Object Detection & Tracking Objects across frames
