@@ -15,6 +15,8 @@ Given a video, the pipeline:
 6. Produces temporally segmented activities with descriptions
 
 Example:
+
+```json
 {
   "segments": [
   {
@@ -28,7 +30,8 @@ Example:
       "activity": "Lateral shoulder raises"
     }
   ]
-} 
+}
+```
 
 ## Architecture & Algorithms
 
