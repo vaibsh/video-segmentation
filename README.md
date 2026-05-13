@@ -99,7 +99,7 @@ instructional videos
 
 ## Architecture & Algorithms
 
- Following is a brief overview architecture / algorithms:  
+ Following is a brief overview of the architecture / algorithms:  
  
  1. Preprocessing - Features are extracted from video using
     YOLO & BoTSORT - Object Detection & Tracking Objects across frames
