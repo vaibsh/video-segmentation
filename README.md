@@ -3,7 +3,7 @@
 
 ## About
 
-This tool partitions a video into coherent activity segments and describes what activity happens in each segment and what happens in the overall video. 
+This tool automatically partitions a video into temporally coherent activity based segments. For each segment, it identifies the start and end frames and generates a semantic description of the activity occurring within that segment. The generated segments are not only locally coherent, but also semantically consistent with the overall context and progression of the video.
 
 ### What This Project Does
 
