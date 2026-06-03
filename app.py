@@ -131,8 +131,13 @@ if run_button:
 
         overall_desc = results.get("overall_video", None)
 
+        first_track = list(results.keys())[0]
+        overall_desc = results[first_track]["story"]["overall_video"]
+
+        st.markdown("### Overall Video Description")
+
         if overall_desc:
-            st.markdown("### Overall Video Description")
+            #st.markdown("### Overall Video Description")
             st.info(overall_desc)
 
         # ====================================================
