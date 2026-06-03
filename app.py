@@ -126,6 +126,16 @@ if run_button:
         )
 
         # ====================================================
+        # OVERALL VIDEO DESCRIPTION (NEW)
+        # ====================================================
+
+        overall_desc = results.get("overall_video", None)
+
+        if overall_desc:
+            st.markdown("### Overall Video Description")
+            st.info(overall_desc)
+
+        # ====================================================
         # VIDEO + TIMELINE + DESCRIPTION
         # ====================================================
 
