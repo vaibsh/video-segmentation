@@ -35,11 +35,9 @@ Example:
 ## Installation
 
 ### Preprocessing
-Use this step to generate all_frames_data.pkl.gz file which is essentially capturing the features in the video using
-YOLO, BoTSORT, SAM2, DINO v2 etc. This is an intermediate file to generate the segments. 
-#### Important: A GPU is required to generate this file from the input video 
-Please use the Jupyter notebook - notebooks/preprocessing.ipynb to generate this file.
-(The code for this file is yet to be fully integrated in this git repo)
+1. Generate the file "all_frames_data.pkl.gz" using the script notebooks/preprocessing.ipynb  
+#### Important: A GPU is required to generate this file  
+This is an intermediate file and since GPU is required to generate it, I have not hosted the logic to generate this on Streamlit. This file esstentially captures the different features in the video using the libraries YOLO, BoTSORT, SAM2, DINO v2 etc
 
 ### Running on Streamlit
 
@@ -47,10 +45,10 @@ Live App:
 https://video-segmentation.streamlit.app/
 
 Steps  
-1. Upload a video
-2. Upload corresponding .pkl.gz preprocessing file
-3. Enter OpenAI API key
-4. Run segmentation
+1. Upload your video file
+2. Upload the file "all_frames_data.pkl.gz" generated in the preprocessing step
+3. Enter your OpenAI API key
+4. Click Run segmentation
 
 The app produces:  
 semantic segments  
@@ -86,7 +84,7 @@ segmented playback
 
 Recommended:  
 MP4 format  
-10–60 seconds  
+10-15 seconds  
 720p or lower  
 Single dominant object  
 
