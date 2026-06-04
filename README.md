@@ -37,7 +37,7 @@ Example:
 ### Preprocessing
 Generate the file "all_frames_data.pkl.gz" using the script notebooks/preprocessing.ipynb
 This is an intermediate file and since GPU is required to generate it, I have not hosted the logic to generate this on Streamlit. This file esstentially captures the different features in the video using the libraries YOLO, BoTSORT, SAM2, DINO v2 etc
-#### Important: A GPU is required to generate this file  
+#### Important: A GPU is required to generate the intermediate file "all_frames_data.pkl.gz"
 
 
 ### Running on Streamlit
