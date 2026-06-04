@@ -61,12 +61,13 @@ segmented playback
 ```bash
 yt-dlp -f "bv*+ba/b" --no-playlist -o "full.%(ext)s" \    
 "https://www.youtube.com/shorts/px-SzDZb2Ss"
+```
 ```bash
 ffmpeg -ss 00:00:07 -to 00:00:23 -i full.mp4 \   
 -c:v libx264 -pix_fmt yuv420p \  
 -c:a aac \  
 -movflags +faststart \  
-  dance.mp4
+dance.mp4
 ```
 
 2. Fitness    
