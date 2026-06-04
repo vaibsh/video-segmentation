@@ -58,29 +58,29 @@ segmented playback
 
 ### Example Data / Videos
 1. Dance
-   ```bash
-   yt-dlp -f "bv*+ba/b" --no-playlist -o "full.%(ext)s" \    
-   "https://www.youtube.com/shorts/px-SzDZb2Ss"
-  ```bash
-  ffmpeg -ss 00:00:07 -to 00:00:23 -i full.mp4 \   
-  -c:v libx264 -pix_fmt yuv420p \  
-  -c:a aac \  
-  -movflags +faststart \  
+```bash
+yt-dlp -f "bv*+ba/b" --no-playlist -o "full.%(ext)s" \    
+"https://www.youtube.com/shorts/px-SzDZb2Ss"
+```bash
+ffmpeg -ss 00:00:07 -to 00:00:23 -i full.mp4 \   
+-c:v libx264 -pix_fmt yuv420p \  
+-c:a aac \  
+-movflags +faststart \  
   dance.mp4
-  ```
+```
 
 2. Fitness    
-   ```bash
-    yt-dlp -f "bv*+ba/b" --no-playlist -o "full.%(ext)s" \    
-    "https://www.youtube.com/watch?v=SrWylih6UQo"
-  ```
-  ```bash
-    ffmpeg -ss 00:00:06 -to 00:00:23 -i full.mp4 \   
-    -c:v libx264 -pix_fmt yuv420p \  
-    -c:a aac \  
-    -movflags +faststart \  
-    fitness.mp4
-  ```
+```bash
+yt-dlp -f "bv*+ba/b" --no-playlist -o "full.%(ext)s" \    
+"https://www.youtube.com/watch?v=SrWylih6UQo"
+```
+```bash
+ffmpeg -ss 00:00:06 -to 00:00:23 -i full.mp4 \   
+-c:v libx264 -pix_fmt yuv420p \  
+-c:a aac \  
+-movflags +faststart \  
+fitness.mp4
+```
 
 ### Running Locally
 
